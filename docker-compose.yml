@@ -1,0 +1,71 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:10.3
+    tty: true
+    volumes:
+      - pfpostgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=node
+      - POSTGRES_PASS=node
+      - POSTGRES_DB=menu
+    ports:
+      - 5432:5432
+
+  react:
+    build:
+      context: .
+      dockerfile: ./front/Dockerfile
+    volumes:
+    - ./front:/app
+    depends_on:
+      - node
+    environment:
+      - CI=true
+    ports:
+      - 3000:3000
+
+  node:
+    build:
+      context: .
+      dockerfile: ./api/Dockerfile
+    volumes:
+    - ./api:/app
+    depends_on:
+      - db
+    environment:
+      - CONFIG_MODE=dev
+      - DB_NAME=menu
+      - DB_USER=node
+      - DB_PASS=node
+      - DB_HOST=db
+      - ALLOWED_HOSTS=*
+      - TERM=xterm
+    ports:
+      - 4000:4000
+    tty: true
+
+  node_test:
+    build:
+      context: .
+      dockerfile: ./api/test/Dockerfile
+    volumes:
+    - ./api:/app
+    depends_on:
+      - db
+    environment:
+      - CONFIG_MODE=dev
+      - DB_NAME=menu
+      - DB_USER=node
+      - DB_PASS=node
+      - DB_HOST=db
+      - ALLOWED_HOSTS=*
+      - TERM=xterm
+      - TEST=true
+    ports:
+      - 4000:4000
+    tty: true
+
+volumes:
+  pfpostgres:

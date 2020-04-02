@@ -1,0 +1,31 @@
+.f-edit {
+  color: rgb(75, 75, 243);
+}
+
+.f-remove {
+  color: rgb(185, 0, 0);
+}
+
+button.icon {
+  border: 0;
+  background-color: transparent;
+  color: transparent;
+}
+
+button.icon:focus {
+  outline: 0;
+}
+
+.actions-center {
+  width: 60px;
+  margin: 0 auto;
+}
+
+button.sec {
+  margin-left: 10px;
+}
+
+.form {
+  border: 1px solid #dee2e6;
+  padding: 10px;
+}
