@@ -5,9 +5,11 @@ import {
   Route,
 } from "react-router-dom";
 
-import Menu from './Menu';
-import DishList from './DishList';
-import './App.css';
+import Menu from './components/Menu';
+import DishList from './components/DishList';
+import E404 from './components/errors/E404';
+
+import './styles/App.css';
 
 
 function App() {
@@ -16,11 +18,11 @@ function App() {
       <Menu />
       <Router>
         <Switch>
-          <Route path="/manage/:table">
+          <Route exact path="/manage/dishes">
             <DishList />
           </Route>
-          <Route path="/browse">
-            browser
+          <Route path="/">
+            <E404 />
           </Route>
         </Switch>
       </Router>

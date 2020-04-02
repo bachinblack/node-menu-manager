@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch, faTimes, faEdit } from '@fortawesome/free-solid-svg-icons'
 
 
-class GenericList extends React.Component {
+class DishList extends React.Component {
 
   constructor(props) {
     super(props);
@@ -85,7 +85,7 @@ class GenericList extends React.Component {
     }).then((raw) => raw.json())
     .then((res) => {
       if (this.state.patchId) {
-        const elIndex = this.state.rows.findIndex((el) => el.id == this.state.patchId);
+        const elIndex = this.state.rows.findIndex((el) => +el.id === +this.state.patchId);
         this.state.rows.splice(elIndex, 1, res);
       } else {
         this.state.rows.push(res);
@@ -96,8 +96,12 @@ class GenericList extends React.Component {
   }
 
   updateField(event) {
-    this.state.formData[event.target.name] = event.target.value;
-    this.forceUpdate();
+    const { value, name } = event.target;
+
+    this.setState((state, props) => {
+      state.formData[name] = value;
+      return state;
+    });
   }
 
   render() {
@@ -177,4 +181,4 @@ class GenericList extends React.Component {
   }
 }
 
-export default GenericList;
+export default DishList;

@@ -11,7 +11,7 @@ import Form from 'react-bootstrap/Form';
 function Menu() {
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#home">TastyCloud</Navbar.Brand>
+      <Navbar.Brand href="/">TastyCloud</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
