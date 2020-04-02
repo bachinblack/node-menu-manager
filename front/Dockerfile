@@ -6,7 +6,5 @@ WORKDIR /app/
 # add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
 
-RUN npm install
 
-# Start
-CMD ["npm", "start"]
+CMD npm install && npm start

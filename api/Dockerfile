@@ -3,4 +3,7 @@ FROM node:lts-alpine
 # set working directory to /app/
 WORKDIR /app/
 
-CMD ["npm", "start"]
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
+
+CMD npm install && npm start
