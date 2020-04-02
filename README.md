@@ -4,7 +4,7 @@
 docker-compose build
 docker-compose up node react
 ```
-## To test back:
+## To test API routes:
 ```
 docker-compose up node-test
 ```
